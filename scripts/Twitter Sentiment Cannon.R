@@ -3,10 +3,7 @@ require(tidyverse)
 require(tidytext)
 require(httr)
 
-
 bearer_token <- "sike"
-
-
 
 searchTwitterTextAndTimestamp <- function(search_terms,n_results){
   headers = c(
@@ -55,12 +52,6 @@ twitter_sentiment <- function(query,filtered){
   sentis <- text_amalgamator(tweets,filtered)
   return(sentis)
 }
-
-zodiac_signs <- tibble(c("aries","taurus","gemini","cancer","leo","virgo","libra","scorpio","sagittarius","capricorn","aquarius","pisces"))
-colnames(zodiac_signs) <- "signs"
-
-zodiac_men_list <- mutate(zodiac_signs, sign_men = str_glue("{signs} men"))
-zodiac_men_list <- zodiac_men_list$sign_men 
 
 count_tester <- function(input, yes_no){
   testvar <- filter(input, word == yes_no)$n 
@@ -115,9 +106,3 @@ many_sentiments <- function(query_list,filtered_words){
   names(master_list) <- c("sentiments","tweets","word lists")
   return(master_list)
 }
-
-taylor_albums <- tibble(c("self-titled","fearless","speak now","red","1989","reputation","lover","folklore","evermore","long pond"))
-colnames(taylor_albums) <- "albums"
-taylor_filters <- c("swift","fearless")
-
-taylor_results <- many_sentiments(taylor_albums,taylor_filters)
